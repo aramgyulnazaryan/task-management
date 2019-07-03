@@ -30,8 +30,10 @@ Route::middleware('auth')->group(function () {
             Route::get('/assigned/tasks', 'TaskController@assignedTasks')->name('tasks.assigned');
         });
 
-        Route::get('/developer/tasks', 'TaskController@developerTasks')->name('tasks.developers');
-        Route::post('/developer/tasks/{task}', 'TaskController@taskStatus')->name('tasks.status');
+        Route::middleware('developer')->group(function () {
+            Route::get('/developer/tasks', 'TaskController@developerTasks')->name('tasks.developers');
+            Route::post('/developer/tasks/{task}', 'TaskController@taskStatus')->name('tasks.status');
+        });
     });
 });
 

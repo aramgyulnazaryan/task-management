@@ -56,4 +56,13 @@ class User extends Authenticatable
 
         return false;
     }
+
+    public static function isDeveloper()
+    {
+        if(Auth::user()->role == 'developer') {
+            return true;
+        }
+
+        return false;
+    }
 }
